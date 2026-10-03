@@ -10,6 +10,9 @@ DB_CONFIG = {
     "ssl_disabled": False,
 }
 
+if os.environ.get("DB_SOCKET"):
+    DB_CONFIG["unix_socket"] = os.environ["DB_SOCKET"]
+
 if os.environ.get("DB_SSL_CA"):
     DB_CONFIG.update({
         "ssl_ca": os.environ["DB_SSL_CA"],

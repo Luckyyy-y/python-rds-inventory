@@ -31,20 +31,20 @@ py -m unittest discover -s tests -v
 Importing `main_code.py` no longer opens a connection because the personal copy
 adds a standard `if __name__ == "__main__"` guard.
 
-## Database checks still pending
+## Local MySQL check
 
-Use a fresh personal `inventory_portfolio` database. Fill in actual results and
-attach evidence after running each check.
+On October 3, 2026, the personal copy was run with MySQL 8.0.46 using a separate sample database and a local Unix socket. It did not use class credentials or an RDS instance.
 
-| Check | Expected behavior | Actual result |
-| --- | --- | --- |
-| Run SQL fixture once | 15 sample rows | Not run in this copy |
-| View items | CLI values match SQL rows | Not run |
-| Add an unsold sample | Row has `saleprice IS NULL` | Not run |
-| Add, quit, reopen | Added record remains visible | Not run |
-| Profit | CLI agrees with aggregate SQL | Not run |
-| Invalid input | No unintended database row | Not run |
-| Certificate verification | Connection succeeds with the correct CA/host | Not run |
+| Check | Result |
+| --- | --- |
+| Run the sample SQL once | 15 rows |
+| View inventory | All 15 sample rows displayed |
+| Add an unsold item | $10.00 purchase, sale price `NULL` |
+| Quit and reopen | 16 rows; the added item remained visible |
+| Calculate profit | CLI and SQL both returned $180.75 |
 
-No copied class credentials were used, and no original class data was changed
-while preparing or testing this repository.
+Menu input was scripted. Output was recorded from the actual application and rendered on a plain page for screenshots. The record is in [captures](captures/), with the pictures in the README.
+
+## Still pending
+
+An AWS RDS connection, AWS network configuration, and certificate/hostname verification have not been tested in this copy. The existing invalid-input tests use mocked cursors; invalid-input behavior was not rechecked against this local database.

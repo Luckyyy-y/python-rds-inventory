@@ -1,0 +1,18 @@
+
+Collectible Tracking System
+iv - items view
+ia - item add
+ic - item calculate
+q  - quit
+Select an option: ic
+
+Total profit: $180.75
+
+Collectible Tracking System
+iv - items view
+ia - item add
+ic - item calculate
+q  - quit
+Select an option: q
+
+Program closed.

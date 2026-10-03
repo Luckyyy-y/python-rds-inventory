@@ -1,114 +1,76 @@
-# Python / RDS Inventory CLI
+# Python / RDS Inventory
 
-A Python command-line application for tracking collectible purchases and sales
-with MySQL. It began as my CIS 2368 coursework at the University of Houston.
-This repository is a separate copy for documentation and future improvements.
+This is a small Python program for tracking purchases and sales. It started as my CIS 2368 homework at the University of Houston.
 
-**Author:** Gerardo Vera  
-**Status:** Coursework implementation copied; portfolio documentation in progress.
-Live database verification, screenshots, and a video demonstration are pending.
+This repository is my separate personal copy. The original class repository is unchanged. The coursework used AWS RDS; the screenshots below use a separate local MySQL database with sample data.
 
-## What it does
+## Screenshots
 
-| Command | Action |
+These are screenshots of recorded program output displayed in a simple transcript page. The menu input was scripted, and the program connected to real local MySQL 8.0.46. They do not show an RDS connection.
+
+### View items
+
+The program displays 15 sample records. Items without a sale price show `Not sold`.
+
+![Recorded inventory output showing sold and unsold items](docs/images/view-items.jpg)
+
+### Add an item
+
+A sample item was added with a $10.00 purchase price and no sale price. After the program closed and reopened, the database had 16 records and the new item was still there.
+
+![Recorded output showing an unsold item being added](docs/images/add-item.jpg)
+
+### Calculate profit
+
+The program returned $180.75. The database aggregate query returned the same amount. Unsold items are excluded.
+
+![Recorded profit output matching the local MySQL query](docs/images/profit.jpg)
+
+The [saved console output](docs/captures/) includes the reopened inventory and the recorded check results.
+
+## Menu options
+
+| Option | What it does |
 | --- | --- |
-| `iv` | View saved items, including items that have not sold |
-| `ia` | Add a purchase date, purchase price, and optional sale price |
-| `ic` | Calculate total profit from items with a sale price |
-| `q` | Quit and close the database connection |
+| `iv` | View items |
+| `ia` | Add an item |
+| `ic` | Calculate profit from sold items |
+| `q` | Quit |
 
-The program rejects invalid date/price formats and negative prices. Database
-errors are displayed in the console. It does not provide editing, deleting,
-user accounts, a graphical interface, or a separate total-sales command.
+## Tools used
 
-## Project background and contribution
-
-The coursework task used a Python menu and an AWS RDS MySQL database. I used
-ChatGPT for connection troubleshooting, SQL suggestions, menu/functions, and
-debugging, as recorded in my original disclosure. See [AI assistance](ai_use.txt).
-
-The copied implementation is the starting point, not a new independently
-designed cloud system. Changes in this personal copy include environment-based
-configuration, an import guard for offline testing, a separate default database
-name, and the documentation below. Those changes were prepared with Codex.
-
-## How the pieces connect
-
-```mermaid
-flowchart LR
-    CLI["Python CLI"] --> View["View items"]
-    CLI --> Add["Add item"]
-    CLI --> Profit["Calculate profit"]
-    View -->|"SELECT"| DB["MySQL item table"]
-    Add -->|"INSERT and commit"| DB
-    Profit -->|"SUM over sold items"| DB
-```
-
-| Component | Role |
-| --- | --- |
-| Python | Menu, input handling, and output |
-| MySQL Connector/Python | Connection, parameterized inserts, and queries |
-| MySQL | Stores item records and calculates the profit aggregate |
-| AWS RDS | Database hosting used for the original coursework |
-
-The personal copy can target an authorized MySQL server, including RDS. Creating
-an RDS instance, configuring a VPC, and provisioning infrastructure are not
-automated by this repository. See [schema and behavior](docs/architecture.md).
+Python, MySQL Connector/Python, and MySQL. AWS RDS was the database host for the coursework. This repository does not create AWS infrastructure.
 
 ## Run it
 
-1. Install the dependency: `py -m pip install -r requirements.txt`.
-2. Create the separate `inventory_portfolio` database using `database_setup.sql`.
-3. Set the database environment variables described in [setup](docs/setup.md).
+1. Install the packages: `py -m pip install -r requirements.txt`.
+2. Run `database_setup.sql` on a separate MySQL database you control.
+3. Set your database environment variables using the [setup guide](docs/setup.md).
 4. Run `py main_code.py`.
 
-Use `python` instead of `py` on macOS/Linux. Use a database you control for this
-copy, rather than the original class database. The setup guide includes the
-Windows PowerShell commands and optional certificate verification settings.
+Use `python` instead of `py` on macOS/Linux. Running the full SQL setup again inserts another set of sample records.
 
-## Evidence and verification
+## Checks
 
-| Evidence | Current status |
-| --- | --- |
-| Implementation and sample SQL | Available in this repository |
-| Offline application checks | [Check results](docs/verification.md) |
-| Actual CLI/database screenshots | Pending |
-| MySQL/RDS integration checks | Pending |
-| Video walkthrough | Planned; no video available yet |
+```powershell
+py -m unittest discover -s tests -v
+```
 
-[Evidence checklist](docs/evidence.md) explains what to capture and what each
-image should prove. Add actual screenshots beside their explanations when
-available. No simulated database screenshots are used as evidence here.
+All 10 offline tests pass. A separate local MySQL run also checked viewing, adding, reopening, and calculating profit. An RDS connection and certificate verification are still pending. See [verification](docs/verification.md).
 
-## Decisions worth explaining
+## Project notes
 
-- **Unsold items:** a missing sale price is stored as SQL `NULL` and displayed
-  as `Not sold`. The profit query excludes those rows.
-- **Insert parameters:** values are passed separately from the SQL statement,
-  rather than assembled into the SQL string.
-- **Persistence:** the add operation commits the insert. A database-backed
-  restart/persistence check still needs to be recorded.
-- **Configuration in the copy:** credentials are read from process environment
-  variables. Real credentials and original Git history were not copied.
+- An unsold item uses SQL `NULL` for its sale price.
+- The insert uses query parameters instead of putting input into a SQL string.
+- The program commits new items so they can be read after reopening.
+- Connection settings come from environment variables.
 
-## Limitations and next steps
+The code still uses `float` for input prices. Decimal input handling and cleanup after database errors are improvements to work on. There is no edit/delete menu, login system, GUI, or separate total-sales command.
 
-This is a small coursework application. Python parses prices with `float`, even
-though MySQL stores them as `DECIMAL`. Non-finite numeric input needs stronger
-validation. There is no rollback/retry strategy, and SQL-error cursor cleanup
-could be improved. Certificate and hostname verification are enabled only when
-`DB_SSL_CA` is configured; no successful TLS connection is claimed here.
+## Help used and origin
 
-Next steps are to verify it against a separate MySQL database, add genuine
-screenshots and a short video, and then address the input/error-handling gaps.
-Those improvements are plans, not completed features.
+I used ChatGPT for connection troubleshooting, SQL suggestions, menu code, and debugging. See [AI assistance](ai_use.txt). Codex helped prepare this personal copy, documentation, and checks.
 
-## Origin
+Copied on October 3, 2026 from my coursework repository, commit `07d03ce0d76cb3b78b5cbc0bbbbc8365a92c6f9f`. This is a separate project copy, not a replacement class submission.
 
-Snapshot copied on October 3, 2026 from the private coursework repository
-`CIS-UH/cis2368-fa26-homework-1-luckyyy-y`, branch `main`, commit
-`07d03ce0d76cb3b78b5cbc0bbbbc8365a92c6f9f`.
-This is an independent repository, not a fork or a replacement submission.
-
-[Setup](docs/setup.md) · [Architecture](docs/architecture.md) ·
-[Troubleshooting](docs/troubleshooting.md) · [Evidence](docs/evidence.md)
+[Setup](docs/setup.md) · [Architecture](docs/architecture.md) · [Troubleshooting](docs/troubleshooting.md) · [Evidence](docs/evidence.md)

@@ -1,0 +1,33 @@
+
+Collectible Tracking System
+iv - items view
+ia - item add
+ic - item calculate
+q  - quit
+Select an option: iv
+
+Saved Items
+ID: 1 | Date: 2026-01-05 | Purchase Price: $25.00 | Sale Price: $40.00
+ID: 2 | Date: 2026-01-12 | Purchase Price: $18.50 | Sale Price: Not sold
+ID: 3 | Date: 2026-01-20 | Purchase Price: $35.00 | Sale Price: $55.00
+ID: 4 | Date: 2026-02-03 | Purchase Price: $42.75 | Sale Price: $60.00
+ID: 5 | Date: 2026-02-14 | Purchase Price: $15.00 | Sale Price: Not sold
+ID: 6 | Date: 2026-02-25 | Purchase Price: $80.00 | Sale Price: $110.00
+ID: 7 | Date: 2026-03-04 | Purchase Price: $22.00 | Sale Price: $30.00
+ID: 8 | Date: 2026-03-17 | Purchase Price: $50.00 | Sale Price: Not sold
+ID: 9 | Date: 2026-04-01 | Purchase Price: $12.50 | Sale Price: $20.00
+ID: 10 | Date: 2026-04-19 | Purchase Price: $65.00 | Sale Price: $90.00
+ID: 11 | Date: 2026-05-07 | Purchase Price: $28.00 | Sale Price: Not sold
+ID: 12 | Date: 2026-05-22 | Purchase Price: $100.00 | Sale Price: $145.00
+ID: 13 | Date: 2026-06-10 | Purchase Price: $45.00 | Sale Price: $38.00
+ID: 14 | Date: 2026-07-02 | Purchase Price: $33.50 | Sale Price: Not sold
+ID: 15 | Date: 2026-08-15 | Purchase Price: $55.00 | Sale Price: $75.00
+
+Collectible Tracking System
+iv - items view
+ia - item add
+ic - item calculate
+q  - quit
+Select an option: q
+
+Program closed.

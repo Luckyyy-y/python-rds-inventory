@@ -1,26 +1,14 @@
-# Evidence to add
+# Screenshots and output
 
-No screenshots or video have been added. This is a capture plan, not a record
-of completed database tests.
+The README includes three screenshots: view items, add an unsold item, and calculate profit.
 
-| Capture | What to show | What it supports |
-| --- | --- | --- |
-| View inventory | CLI `iv` output and matching SQL rows | Stored records and unsold-item display |
-| Add and restart | `ia` input, SQL row, then `iv` after reopening | Persistence of a committed record |
-| Profit | `ic` output and matching aggregate query | Agreement with the database calculation |
+They show actual recorded output from the Python program using local MySQL 8.0.46 and fictional sample records. Scripted menu input was echoed into the transcript. The screenshots were taken from a simple browser transcript page, not MySQL Workbench or a native terminal window.
 
-Use sample data in a fresh personal database. Crop to relevant output and remove
-credentials or unrelated account details. Add files to `docs/images/` when
-available, then place them beside the relevant explanation in the README.
+The complete outputs are in [captures](captures/). The local database check started with 15 records, added one $10.00 unsold item, and read 16 records after reopening. Profit stayed at $180.75 and matched the SQL aggregate.
 
-A caption should state the action, actual result, and supported conclusion.
-For example, use this only after the persistence test actually succeeds:
+These captures support local MySQL behavior. They do not verify an AWS RDS deployment, AWS networking, or a TLS certificate.
 
-> I added a sample item and reopened the application. The same item appeared
-> in the CLI and database query, confirming that the insert persisted.
+## Still to add
 
-## Video later
-
-Briefly explain the purpose, view sample records, add an item, verify it with a
-query, show profit, and explain one limitation. Link the actual recording from
-the README when available. No placeholder video URL is included.
+- A separate RDS connection check with private details removed.
+- A short video showing the menu and explaining one limitation.

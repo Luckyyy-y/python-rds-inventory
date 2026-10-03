@@ -1,0 +1,22 @@
+
+Collectible Tracking System
+iv - items view
+ia - item add
+ic - item calculate
+q  - quit
+Select an option: ia
+
+Enter the purchase date (YYYY-MM-DD): 2026-10-03
+Enter the purchase price: $10
+Enter the sale price or leave it blank: $
+
+Item added successfully.
+
+Collectible Tracking System
+iv - items view
+ia - item add
+ic - item calculate
+q  - quit
+Select an option: q
+
+Program closed.

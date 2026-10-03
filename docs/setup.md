@@ -46,6 +46,7 @@ automatically load an `.env` file.
 | `DB_PASSWORD` | Empty | MySQL password |
 | `DB_NAME` | `inventory_portfolio` | Database name |
 | `DB_SSL_CA` | Unset | Optional CA certificate path |
+| `DB_SOCKET` | Unset | Optional local Unix socket on Linux/macOS |
 
 The defaults do not represent a provisioned working account. Set your actual
 connection values before running the app. For certificate/hostname verification,
@@ -69,8 +70,7 @@ source. This repository and its tests do not change any AWS settings.
 py main_code.py
 ```
 
-Complete the [database checks](verification.md) before claiming your personal
-deployment works. When finished, clear the password from the shell:
+The [verification record](verification.md) covers the local MySQL run. Check your own RDS connection separately. When finished, clear the password from the shell:
 
 ```powershell
 Remove-Item Env:DB_PASSWORD
