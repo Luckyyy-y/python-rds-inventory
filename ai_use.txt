@@ -1,0 +1,16 @@
+AI assistance for the original coursework
+
+The original disclosure described using ChatGPT to help troubleshoot the
+MySQL/RDS connection, understand error 1045, suggest SQL, write and debug
+functions and the menu loop, and explain __pycache__ and .gitignore.
+
+This copy retains that disclosure in summary form. A home-network address
+from the original error message has been removed.
+
+AI assistance for this personal copy
+
+Codex helped create the separate repository, replace hardcoded database
+settings with environment variables, organize the documentation, and run
+offline checks. Screenshots and an RDS demonstration still need to be added.
+Documentation describes observed code and distinguishes offline checks from
+checks that require a real database.
