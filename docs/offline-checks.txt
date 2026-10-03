@@ -1,0 +1,15 @@
+test_add_unsold_item_commits_parameters (test_cli.InventoryChecks.test_add_unsold_item_commits_parameters) ... ok
+test_connection_error_is_reported (test_cli.InventoryChecks.test_connection_error_is_reported) ... ok
+test_empty_inventory (test_cli.InventoryChecks.test_empty_inventory) ... ok
+test_empty_profit_displays_zero (test_cli.InventoryChecks.test_empty_profit_displays_zero) ... ok
+test_environment_and_certificate_settings (test_cli.InventoryChecks.test_environment_and_certificate_settings) ... ok
+test_invalid_date_rejected (test_cli.InventoryChecks.test_invalid_date_rejected) ... ok
+test_menu_handles_invalid_choice_and_closes (test_cli.InventoryChecks.test_menu_handles_invalid_choice_and_closes) ... ok
+test_negative_prices_rejected_before_insert (test_cli.InventoryChecks.test_negative_prices_rejected_before_insert) ... ok
+test_profit_display_uses_aggregate (test_cli.InventoryChecks.test_profit_display_uses_aggregate) ... ok
+test_view_distinguishes_sold_and_unsold (test_cli.InventoryChecks.test_view_distinguishes_sold_and_unsold) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.008s
+
+OK

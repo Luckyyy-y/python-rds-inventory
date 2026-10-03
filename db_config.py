@@ -6,7 +6,7 @@ DB_CONFIG = {
     "port": int(os.environ.get("DB_PORT", "3306")),
     "user": os.environ.get("DB_USER", "inventory_user"),
     "password": os.environ.get("DB_PASSWORD", ""),
-    "database": os.environ.get("DB_NAME", "cis2368"),
+    "database": os.environ.get("DB_NAME", "inventory_portfolio"),
     "ssl_disabled": False,
 }
 
